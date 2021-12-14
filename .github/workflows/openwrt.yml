@@ -37,7 +37,7 @@ jobs:
           sudo -E apt-get clean
       - name: Download lede
         run: |
-          git clone https://github.com/coolsnowwolf/lede
+          git clone https://github.com/bingdao1/lede
           cp .config ./lede/.config
           mv ./lede/* ./
       - name: Install Helloword
@@ -62,7 +62,7 @@ jobs:
           ./scripts/feeds install -a
       - name: Costom configure file
         run: |
-          make defconfig
+          #make defconfig
       - name: Download package source code
         run: |
           make download -j8
