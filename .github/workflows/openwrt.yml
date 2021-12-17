@@ -28,7 +28,7 @@ jobs:
     steps:
       - name: Checkout
         run: |
-
+          #    
       - name: Initialization environment
         env:
           DEBIAN_FRONTEND: noninteractive
@@ -50,10 +50,11 @@ jobs:
           ./scripts/feeds install -a
           
       - name: SSH connection to Actions
-        if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')     
-        env:
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}   
+        run: |
+          if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')     
+          env:
+            TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+            TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}   
       - name: Costom configure file
         run: |
           make defconfig
@@ -67,7 +68,8 @@ jobs:
           echo -e "$(nproc) thread build."
           make -j$(nproc) V=s
       - name : Upload artifact
-        with:
-          name: OpenWrt_firmware
-          path: bin/targets/
+        run: |
+          with:
+            name: OpenWrt_firmware
+            path: bin/targets/
           
