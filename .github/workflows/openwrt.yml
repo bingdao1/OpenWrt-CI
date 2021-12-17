@@ -38,7 +38,7 @@ jobs:
       - name: Download openwrt
         run: |
           git clone https://github.com/coolsnowwolf/openwrt ./openwrt
-          cp ./.config ./openwrt/.config
+          cp .config openwrt/.config
           mv ./openwrt/* ./
       - name: load .config
         run: |
