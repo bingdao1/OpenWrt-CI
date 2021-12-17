@@ -53,11 +53,11 @@ jobs:
           ./scripts/feeds install -a
           
       - name: SSH connection to Actions
-        run: |
-          if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')     
-          env:
-            TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-            TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}   
+        uses: P3TERX/ssh2actions@v1.0.0
+        if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')     
+        env:
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}   
       - name: Costom configure file
         run: |
           make defconfig
