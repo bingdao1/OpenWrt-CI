@@ -41,7 +41,7 @@ jobs:
 
       - name: load .config
         run: |
-          #cp .config openwrt/.config
+          cp .config openwrt/.config
           mv ./openwrt/* ./          
       - name: Install Helloword
         run: |
